@@ -25,4 +25,25 @@ public class ProjectService {
         Project save = projectDao.save(project);
         return save != null;
     }
+
+    public Project updateProject(Integer id,Project project) {
+        Project one = projectDao.findOne(id);
+        one.setDescription(project.getDescription());
+        one.setName(project.getName());
+        return projectDao.save(one);
+    }
+
+    public boolean deleteProjectById(Integer id) {
+        try {
+            projectDao.delete(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Project getProjectById(Integer id) {
+        return projectDao.findOne(id);
+
+    }
 }

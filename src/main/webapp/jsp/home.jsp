@@ -28,10 +28,20 @@
 
 </div>
 
-<div class="project-form">
+<div class="project-form add">
     <input type="text" class="input" name="name" placeholder="name">
-    <input type="text" class="input" name="description" placeholder="name">
+    <input type="text" class="input" name="description" placeholder="Description">
     <input type="submit" class="add-project" value="ok">
+</div>
+<div class="project-form update">
+    <input type="hidden" class="input" name="id" value="1">
+    <input type="text" class="input" name="name" placeholder="name">
+    <input type="text" class="input" name="description" placeholder="Description">
+    <input type="submit" class="update-project" value="ok">
+</div>
+<div class="project-form delete">
+    <input type="hidden" class="input" name="id" value="1">
+    <input type="submit" class="delete-project" value="ok">
 </div>
 </body>
 </html>
