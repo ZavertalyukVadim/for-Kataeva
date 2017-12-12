@@ -10,6 +10,14 @@ $(document).on("click", ".delete-project", function () {
     project.delete();
 });
 
+$(document).on("click", ".read-project", function () {
+    project.read();
+});
+
+$(document).on("click", ".read-all-project", function () {
+    project.readAll();
+});
+
 function Project() {
     this.id = '';
     this.name = '';
@@ -75,5 +83,26 @@ Project.prototype.delete = function () {
 
 
 Project.prototype.read = function () {
+    this.id = $(".read input[name='id']").val();
 
+    $.ajax({
+        type: "GET",
+        url: "/api/project/" + this.id,
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data)
+        }
+    });
+};
+
+Project.prototype.readAll = function () {
+
+    $.ajax({
+        type: "GET",
+        url: "/api/project",
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data)
+        }
+    });
 };

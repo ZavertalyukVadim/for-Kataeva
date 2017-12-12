@@ -43,5 +43,13 @@
     <input type="hidden" class="input" name="id" value="1">
     <input type="submit" class="delete-project" value="ok">
 </div>
+
+<div class="project-form read">
+    <input type="text" class="input" name="id" placeholder="id">
+    <input type="submit" class="read-project" value="one">
+</div>
+<div class="project-form read-all">
+    <input type="submit" class="read-all-project" value="all">
+</div>
 </body>
 </html>
