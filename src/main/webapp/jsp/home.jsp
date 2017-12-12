@@ -6,7 +6,7 @@
     <title>Home</title>
 </head>
 <body>
-<div class="allTasks">
+<div>
     <div class="projects">
         <div class="project-item" data-id="1">
             <a href="">blabla</a>
