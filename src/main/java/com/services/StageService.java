@@ -1,6 +1,8 @@
 package com.services;
 
+import com.dao.ProjectDao;
 import com.dao.StageDao;
+import com.entities.Project;
 import com.entities.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import java.util.List;
 @Service
 public class StageService {
     private final StageDao stageDao;
+    private final ProjectDao projectDao;
 
     @Autowired
-    public StageService(StageDao stageDao) {
+    public StageService(StageDao stageDao, ProjectDao projectDao) {
         this.stageDao = stageDao;
+        this.projectDao = projectDao;
     }
 
     public List<Stage> getAllStages() {
@@ -50,7 +54,16 @@ public class StageService {
     }
 
     public boolean addListStages(Integer id, List<Stage> stages) {
-
+        Project project = projectDao.findOne(id);
+        if (project!=null){
+            for (Stage stage : stages){
+                stage.setId(0);
+                project.addStage(stage);
+                stage.setProject(project);
+            }
+            projectDao.save(project);
+            return true;
+        }
         return false;
     }
 }

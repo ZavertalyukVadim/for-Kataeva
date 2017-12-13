@@ -18,27 +18,32 @@ public class StageController {
     }
 
     @GetMapping
-    public List<Stage> getAllProjects(){
+    public List<Stage> getAllStages(){
         return stageService.getAllStages();
     }
 
     @GetMapping(value = "/{id}")
-    public Stage getProjectById(@PathVariable("id") Integer id){
+    public Stage getStagesById(@PathVariable("id") Integer id){
         return stageService.getStageById(id);
     }
 
     @DeleteMapping(value = "/{id}")
-    public boolean deleteProjectById(@PathVariable("id") Integer id){
+    public boolean deleteStagesById(@PathVariable("id") Integer id){
         return stageService.deleteStageById(id);
     }
 
     @PutMapping(value = "/{id}")
-    public Stage updateProject(@PathVariable("id") Integer id,@RequestBody Stage stage){
+    public Stage updateStages(@PathVariable("id") Integer id,@RequestBody Stage stage){
         return stageService.updateStage(id,stage);
     }
 
     @PostMapping
-    public boolean addProject(@RequestBody Stage stage){
+    public boolean addStages(@RequestBody Stage stage){
         return stageService.addStage(stage);
+    }
+
+    @PostMapping(value = "/{id}")
+    public boolean addListStages(@PathVariable("id") Integer id,@RequestBody List<Stage> stages){
+        return stageService.addListStages(id,stages);
     }
 }
