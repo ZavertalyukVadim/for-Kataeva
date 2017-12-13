@@ -107,8 +107,4 @@ public class Stage {
         return (first/6);
     }
 
-    public Integer getNormalProbability(){
-        return null;
-    }
-
 }

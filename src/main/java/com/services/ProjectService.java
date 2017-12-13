@@ -1,7 +1,9 @@
 package com.services;
 
 import com.dao.ProjectDao;
+import com.dao.StageDao;
 import com.entities.Project;
+import com.entities.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +13,12 @@ import java.util.List;
 public class ProjectService {
 
     private final ProjectDao projectDao;
+    private final StageDao stageDao;
 
     @Autowired
-    public ProjectService(ProjectDao projectDao) {
+    public ProjectService(ProjectDao projectDao, StageDao stageDao) {
         this.projectDao = projectDao;
+        this.stageDao = stageDao;
     }
 
     public List<Project> getAllProjects() {
@@ -45,5 +49,13 @@ public class ProjectService {
     public Project getProjectById(Integer id) {
         return projectDao.findOne(id);
 
+    }
+
+    public void test() {
+        Project project = new Project("name","description");
+        Stage stage = new Stage("name","description",10,5,2);
+        stage.setProject(project);
+        project.addStage(stage);
+        projectDao.save(project);
     }
 }

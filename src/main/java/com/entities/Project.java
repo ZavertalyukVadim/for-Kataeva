@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,13 +22,12 @@ public class Project {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-    private List<Stage> stages;
+    private List<Stage> stages = new ArrayList<>();
 
     public Project() {
     }
 
-    public Project(Integer id, String name, String description) {
-        this.id = id;
+    public Project( String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -69,7 +69,15 @@ public class Project {
         return stages;
     }
 
-    public void setStages(List<Stage> stages) {
-        this.stages = stages;
+    public void addStage(Stage stage) {
+        this.stages.add(stage);
+    }
+
+    public float getBadProbability(){
+        float summE = 0;
+        for (Stage stage:stages){
+            summE+=stage.getBadProbability();
+        }
+        return 0;
     }
 }
