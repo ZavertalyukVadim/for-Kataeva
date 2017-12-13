@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+<main>
+    <section class="stages-block add" data-project-id="1">
+        <ul class="list">
+            <li class="item active">
+                <div class="form">
+                    <div class="title"></div>
+                    <div class="form-group">
+                        <input type="text" class="input" name="name" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="input" name="description" placeholder="description">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="input" name="pessimistic_assessment" placeholder="pessimistic_assessment">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="input" name="probable_assessment" placeholder="probable_assessment">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="input" name="optimistic_assessment" placeholder="optimistic_assessment">
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="add-field">add stage</div>
+        <div class="submit">send</div>
+    </section>
+    <br><br>
+    <section class="stages-block read">
+        <ul class="list">
+            <li class="item active" data-project-id="1" data-stage-id="1">
+                <div class="update" data-stage-id="1">update</div>
+                <div class="delete" data-delete-id="1">delete</div>
+                <div class="content">
+                    <div class="field" data-key="name" data-value="dsa">
+                        <div class="label">name</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="description" data-value="dsfa">
+                        <div class="label">description</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="pessimistic_assessment" data-value="1">
+                        <div class="label">pessimistic_assessment</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="probable_assessment" data-value="1">
+                        <div class="label">probable_assessment</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="optimistic_assessment" data-value="1">
+                        <div class="label">optimistic_assessment</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="item" data-project-id="2" data-stage-id="2">
+                <div class="update" data-stage-id="2">update</div>
+                <div class="delete" data-delete-id="2">delete</div>
+                <div class="content">
+                    <div class="field" data-key="name" data-value="dfsa">
+                        <div class="label">name</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="description" data-value="dsgtrefa">
+                        <div class="label">description</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="pessimistic_assessment" data-value="2">
+                        <div class="label">pessimistic_assessment</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="probable_assessment" data-value="2">
+                        <div class="label">probable_assessment</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="field" data-key="optimistic_assessment" data-value="2">
+                        <div class="label">optimistic_assessment</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="update-popup">
+            <div class="form"></div>
+            <div class="submit">Update</div>
+        </div>
+    </section>
+</main>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
