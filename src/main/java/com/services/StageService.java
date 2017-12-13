@@ -32,7 +32,7 @@ public class StageService {
     }
 
     public Stage updateStage(Integer id, Stage stage) {
-        System.out.println("id = "+id);
+        System.out.println("id = " + id);
         System.out.println(stage);
         Stage one = stageDao.findOne(id);
         one.setDescription(stage.getDescription());
@@ -57,7 +57,7 @@ public class StageService {
 
     }
 
-    public boolean addListStages(Integer id, List<Stage> stages) {
+    public List<Stage> addListStages(Integer id, List<Stage> stages) {
         Project project = projectDao.findOne(id);
         if (project != null) {
             for (Stage stage : stages) {
@@ -65,9 +65,9 @@ public class StageService {
                 project.addStage(stage);
                 stage.setProject(project);
             }
-            projectDao.save(project);
-            return true;
+            Project save = projectDao.save(project);
+            return save.getStages();
         }
-        return false;
+        return null;
     }
 }

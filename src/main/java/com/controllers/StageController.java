@@ -43,7 +43,7 @@ public class StageController {
     }
 
     @PostMapping(value = "/{id}")
-    public boolean addListStages(@PathVariable("id") Integer id,@RequestBody List<Stage> stages){
+    public List<Stage> addListStages(@PathVariable("id") Integer id,@RequestBody List<Stage> stages){
         return stageService.addListStages(id,stages);
     }
 }

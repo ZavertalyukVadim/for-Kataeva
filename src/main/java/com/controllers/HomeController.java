@@ -32,6 +32,7 @@ public class HomeController {
         Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         role = !Objects.equals(auth.toString(), "anonymousUser");
         modelMap.addAttribute("role", role);
+        modelMap.addAttribute("projects", projectService.getAllProjects());
         return "home";
     }
 

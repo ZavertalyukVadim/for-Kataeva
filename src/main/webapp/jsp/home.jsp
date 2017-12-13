@@ -85,10 +85,22 @@
     <div class="panel panel-default">
         <div>
             <div class="projects">
-                <div class="project-item" data-id="1">
-                    <a href="">blabla</a>
-                    fds
-                </div>
+                <c:forEach items="${projects}" var="project">
+                    <div class="project-item" data-id="${project.id}">
+                        <div class="field">
+                            <div class="label">Title</div>
+                            <div class="value"><a href="/project/${project.id}">${project.name}</a></div>
+                        </div>
+                        <div class="field">
+                            <div class="label">Description</div>
+                            <div class="value">${project.description}</div>
+                        </div>
+                        <div class="field">
+                            <div class="label">Normal probability</div>
+                            <div class="value">${project.normalProbability}</div>
+                        </div>
+                    </div><hr>
+                </c:forEach>
             </div>
 
         </div>
