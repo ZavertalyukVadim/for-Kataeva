@@ -19,14 +19,15 @@ public class Stage {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "minimum_assessment")
-    private Integer minimumAssessment;
+    @Column(name = "pessimistic_assessment")
+    private Integer pessimisticAssessment;
+
+    @Column(name = "probable_assessment")
+    private Integer probableAssessment;
 
     @Column(name = "optimistic_assessment")
     private Integer optimisticAssessment;
 
-    @Column(name = "maximum_assessment")
-    private Integer maximumAssessment;
 
     @JsonIgnore
     @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
@@ -34,13 +35,15 @@ public class Stage {
     @JoinColumn(name = "project_id")
     private Project project;
 
+    public Stage() {
+    }
 
-    public Stage(String name, String description, Integer minimumAssessment, Integer optimisticAssessment, Integer maximumAssessment) {
+    public Stage(String name, String description, Integer pessimisticAssessment, Integer probableAssessment, Integer optimisticAssessment) {
         this.name = name;
         this.description = description;
-        this.minimumAssessment = minimumAssessment;
+        this.pessimisticAssessment = pessimisticAssessment;
+        this.probableAssessment = probableAssessment;
         this.optimisticAssessment = optimisticAssessment;
-        this.maximumAssessment = maximumAssessment;
     }
 
     public Integer getId() {
@@ -75,12 +78,20 @@ public class Stage {
         this.project = project;
     }
 
-    public Integer getMinimumAssessment() {
-        return minimumAssessment;
+    public Integer getPessimisticAssessment() {
+        return pessimisticAssessment;
     }
 
-    public void setMinimumAssessment(Integer minimumAssessment) {
-        this.minimumAssessment = minimumAssessment;
+    public void setPessimisticAssessment(Integer pessimisticAssessment) {
+        this.pessimisticAssessment = pessimisticAssessment;
+    }
+
+    public Integer getProbableAssessment() {
+        return probableAssessment;
+    }
+
+    public void setProbableAssessment(Integer probableAssessment) {
+        this.probableAssessment = probableAssessment;
     }
 
     public Integer getOptimisticAssessment() {
@@ -91,11 +102,13 @@ public class Stage {
         this.optimisticAssessment = optimisticAssessment;
     }
 
-    public Integer getMaximumAssessment() {
-        return maximumAssessment;
+    public float getBadProbability(){
+        float first = (optimisticAssessment+pessimisticAssessment+4*probableAssessment);
+        return (first/6);
     }
 
-    public void setMaximumAssessment(Integer maximumAssessment) {
-        this.maximumAssessment = maximumAssessment;
+    public Integer getNormalProbability(){
+        return null;
     }
+
 }

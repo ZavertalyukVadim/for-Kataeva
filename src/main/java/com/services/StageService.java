@@ -25,13 +25,13 @@ public class StageService {
         return save != null;
     }
 
-    public Stage updateStage(Integer id,Stage stage) {
+    public Stage updateStage(Integer id, Stage stage) {
         Stage one = stageDao.findOne(id);
         one.setDescription(stage.getDescription());
         one.setName(stage.getName());
-        one.setMaximumAssessment(stage.getMaximumAssessment());
         one.setOptimisticAssessment(stage.getOptimisticAssessment());
-        one.setMinimumAssessment(stage.getMinimumAssessment());
+        one.setProbableAssessment(stage.getProbableAssessment());
+        one.setPessimisticAssessment(stage.getPessimisticAssessment());
         return stageDao.save(one);
     }
 
