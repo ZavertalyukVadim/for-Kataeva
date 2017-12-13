@@ -102,8 +102,8 @@ public class Stage {
         this.optimisticAssessment = optimisticAssessment;
     }
 
-    public float getBadProbability(){
-        float first = (optimisticAssessment+pessimisticAssessment+4*probableAssessment);
+    public double getBadProbability(){
+        double first = (optimisticAssessment+pessimisticAssessment+4*probableAssessment);
         return (first/6);
     }
 

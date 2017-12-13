@@ -55,7 +55,11 @@ public class ProjectService {
         Project project = new Project("name","description");
         Stage stage = new Stage("name","description",10,5,2);
         stage.setProject(project);
+        Stage stage1 = new Stage("name1","description1",20,10,4);
+        stage1.setProject(project);
+
         project.addStage(stage);
+        project.addStage(stage1);
         projectDao.save(project);
     }
 }

@@ -73,11 +73,11 @@ public class Project {
         this.stages.add(stage);
     }
 
-    public float getBadProbability(){
-        float summE = 0;
+    public double getBadProbability(){
+        double summE = 0;
         for (Stage stage:stages){
             summE+=stage.getBadProbability();
         }
-        return 0;
+        return summE;
     }
 }
