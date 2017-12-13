@@ -75,9 +75,16 @@ public class Project {
 
     public double getBadProbability(){
         double summE = 0;
+        double sko = 0;
+
         for (Stage stage:stages){
             summE+=stage.getBadProbability();
+            double forSko = stage.getPessimisticAssessment()-stage.getOptimisticAssessment();
+            sko += (forSko/6)*(forSko/6);
         }
-        return summE;
+
+        double skoTotal = Math.sqrt(sko);
+
+        return summE + 2 * skoTotal;
     }
 }
