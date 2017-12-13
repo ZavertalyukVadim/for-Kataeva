@@ -55,8 +55,8 @@ public class StageService {
 
     public boolean addListStages(Integer id, List<Stage> stages) {
         Project project = projectDao.findOne(id);
-        if (project!=null){
-            for (Stage stage : stages){
+        if (project != null) {
+            for (Stage stage : stages) {
                 stage.setId(0);
                 project.addStage(stage);
                 stage.setProject(project);
