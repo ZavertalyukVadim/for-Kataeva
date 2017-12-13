@@ -41,4 +41,9 @@ public class ProjectController {
     public boolean addProject(@RequestBody Project project){
         return projectService.addProject(project);
     }
+
+    @PostMapping(value = "/{id}")
+    public boolean addProjectForUser(@PathVariable("id") Integer id,@RequestBody Project project){
+        return projectService.addProjectForUser(id,project);
+    }
 }
