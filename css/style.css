@@ -59,3 +59,17 @@ body {
     height: auto;
     transition: .8s;
 }
+
+/*.read .active .content {*/
+    /*display: inline-block!important;*/
+/*}*/
+
+/*.read .item .content {*/
+    /*display: none;*/
+/*}*/
+
+/*.read .item .title {*/
+    /*height: 20px;*/
+    /*width: 150px;*/
+    /*background-color: silver;*/
+/*}*/

@@ -1,3 +1,5 @@
+let numbers = ["pessimistic_assessment", "probable_assessment", "optimistic_assessment"];
+
 let setTitles = function () {
     let items = $(".add .item");
     for (let index = 0; index < items.length; index++) {
@@ -5,24 +7,14 @@ let setTitles = function () {
     }
 };
 
-let numbers = ["pessimistic_assessment", "probable_assessment", "optimistic_assessment"];
-$(document).on("click", ".add-field", function () {
+let addStageForm = function () {
     let itemObject = $(".item");
-    $(".item").removeClass("active");
+    itemObject.removeClass("active");
     $(".add .list").append("<li class='item active'>" + itemObject.html() + "</li>");
     setTitles()
-});
+};
 
-$(document).on("click", ".add .item", function () {
-    if ($(this).hasClass("active")) {
-    } else {
-        $(".add .item").removeClass("active");
-        $(this).addClass("active")
-    }
-    setTitles()
-});
-
-$(document).on("click", ".submit", function () {
+let addStages = function () {
     let forms = $(".add .form");
     let data = [];
     for (let index = 0; index < forms.length; index++) {
@@ -39,17 +31,17 @@ $(document).on("click", ".submit", function () {
     }
     data = JSON.stringify(data);
     /*$.ajax({
-        type: "POST",
-        url: "",
-        data: data,
-        success: function (data) {
-            console.log(data)
-        }
-    })*/
-});
+     type: "POST",
+     url: "",
+     data: data,
+     success: function (data) {
+     console.log(data)
+     }
+     })*/
+};
 
-$(document).on("click", ".update", function () {
-    let stageId = $(this).data('stage-id');
+let updateFormInit = function (object) {
+    let stageId = $(object).data('stage-id');
     let item = $(".item[data-stage-id='" + stageId + "']");
     let fields = item.find('.field');
     let data = {};
@@ -58,10 +50,10 @@ $(document).on("click", ".update", function () {
     for (let index = 0; index < fields.length; index++) {
         formData +=`<div class="form-group"><input type="text" class="input" name="${$(fields[index]).data('key')}" value="${$(fields[index]).data('value')}"></div>\n`;
     }
-    $(".update-popup .form").html(formData)
-});
+    $(".update-popup .form").html(formData);
+};
 
-$(document).on("click", ".update-popup .submit", function () {
+let updateStage = function () {
     let fields = $(".update-popup .form .input");
     let data = {};
     for (let index = 0; index < fields.length; index++) {
@@ -75,25 +67,56 @@ $(document).on("click", ".update-popup .submit", function () {
     data = JSON.stringify(data);
 
     /*$.ajax({
-        type: "PUT",
-        url: "stageUrl/" + stageId,
-        data: data,
-        success: function (data) {
-            console.log(data);
-        }
-    })*/
-});
+     type: "PUT",
+     url: "stageUrl/" + stageId,
+     data: data,
+     success: function (data) {
+     console.log(data);
+     }
+     })*/
+};
 
-$(document).on("click", ".update-popup .submit", function () {
+let deleteStage = function () {
     let stageId = $(".read .delete").data('delete-id');
 
     /*$.ajax({
-        type: "DELETE",
-        url: "stageUrl/" + stageId,
-        success: function (data) {
-            console.log(data);
-        }
-    })*/
+     type: "DELETE",
+     url: "stageUrl/" + stageId,
+     success: function (data) {
+     console.log(data);
+     }
+     })*/
+};
+
+
+$(document).on("click", ".add-field", function () {
+    addStageForm();
+});
+
+$(document).on("click", ".add .item", function () {
+    if ($(this).hasClass("active")) {
+    } else {
+        $(".add .item").removeClass("active");
+        $(this).addClass("active")
+    }
+    setTitles();
+});
+
+
+$(document).on("click", ".submit", function () {
+    addStages();
+});
+
+$(document).on("click", ".update", function () {
+    updateFormInit(this);
+});
+
+$(document).on("click", ".update-popup .submit", function () {
+    updateStage();
+});
+
+$(document).on("click", ".update-popup .submit", function () {
+    deleteStage();
 });
 
 
