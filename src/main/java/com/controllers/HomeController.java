@@ -61,6 +61,6 @@ public class HomeController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@RequestParam("username")String username,@RequestParam("password")String password) {
         userService.addUser(username, password);
-        return "home";
+        return "redirect:/";
     }
 }
