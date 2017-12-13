@@ -48,4 +48,9 @@ public class StageService {
         return stageDao.findOne(id);
 
     }
+
+    public boolean addListStages(Integer id, List<Stage> stages) {
+
+        return false;
+    }
 }

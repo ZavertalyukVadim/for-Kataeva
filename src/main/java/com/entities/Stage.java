@@ -1,8 +1,6 @@
 package com.entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -28,9 +26,7 @@ public class Stage {
     @Column(name = "optimistic_assessment")
     private Integer optimisticAssessment;
 
-
-    @JsonIgnore
-    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
     private Project project;
@@ -102,9 +98,9 @@ public class Stage {
         this.optimisticAssessment = optimisticAssessment;
     }
 
-    public double getBadProbability(){
-        double first = (optimisticAssessment+pessimisticAssessment+4*probableAssessment);
-        return (first/6);
+    public double getBadProbability() {
+        double first = (optimisticAssessment + pessimisticAssessment + 4 * probableAssessment);
+        return (first / 6);
     }
 
 }
