@@ -1,24 +1,23 @@
 package com.services;
 
 import com.dao.ProjectDao;
-import com.dao.StageDao;
 import com.entities.Project;
 import com.entities.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProjectService {
 
     private final ProjectDao projectDao;
-    private final StageDao stageDao;
 
     @Autowired
-    public ProjectService(ProjectDao projectDao, StageDao stageDao) {
+    public ProjectService(ProjectDao projectDao) {
         this.projectDao = projectDao;
-        this.stageDao = stageDao;
     }
 
     public List<Project> getAllProjects() {
