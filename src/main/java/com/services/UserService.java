@@ -21,6 +21,11 @@ public class UserService {
         return save != null;
     }
 
+    public void addUser(String username,String password) {
+        User user = new User(username,password);
+        userDao.save(user);
+    }
+
     public User updateUser(Integer id,User user) {
         User one = userDao.findOne(id);
         one.setUsername(user.getUsername());
@@ -40,5 +45,9 @@ public class UserService {
     public User getUserById(Integer id) {
         return userDao.findOne(id);
 
+    }
+
+    public User getUserByUsername(String username) {
+        return userDao.findUserByUsername(username);
     }
 }
