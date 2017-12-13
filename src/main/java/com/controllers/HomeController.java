@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @Autowired
+
     private final ProjectService projectService;
 
+    @Autowired
     public HomeController(ProjectService projectService) {
         this.projectService = projectService;
     }
