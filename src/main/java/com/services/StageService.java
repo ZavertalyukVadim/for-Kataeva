@@ -32,6 +32,8 @@ public class StageService {
     }
 
     public Stage updateStage(Integer id, Stage stage) {
+        System.out.println("id = "+id);
+        System.out.println(stage);
         Stage one = stageDao.findOne(id);
         one.setDescription(stage.getDescription());
         one.setName(stage.getName());

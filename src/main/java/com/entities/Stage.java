@@ -27,7 +27,7 @@ public class Stage {
     private Integer optimisticAssessment;
 
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
 
@@ -103,4 +103,16 @@ public class Stage {
         return (first / 6);
     }
 
+    @Override
+    public String toString() {
+        return "Stage{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", pessimisticAssessment=" + pessimisticAssessment +
+                ", probableAssessment=" + probableAssessment +
+                ", optimisticAssessment=" + optimisticAssessment +
+                ", project=" + project +
+                '}';
+    }
 }

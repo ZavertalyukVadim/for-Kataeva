@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -34,7 +31,6 @@ public class HomeController {
         Boolean role;
         Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         role = !Objects.equals(auth.toString(), "anonymousUser");
-
         modelMap.addAttribute("role", role);
         return "home";
     }
@@ -62,5 +58,11 @@ public class HomeController {
     public String registration(@RequestParam("username")String username,@RequestParam("password")String password) {
         userService.addUser(username, password);
         return "redirect:/";
+    }
+
+    @GetMapping(value = "/project/{id}")
+    public String projectDetail(@PathVariable("id") Integer id,ModelMap modelMap){
+        modelMap.addAttribute("project", projectService.getProjectById(id));
+        return "project";
     }
 }

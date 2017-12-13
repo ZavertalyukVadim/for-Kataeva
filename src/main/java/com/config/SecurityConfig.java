@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
@@ -35,12 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-
-                .antMatchers("/").authenticated()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
-                .and().formLogin().loginPage("/login")
+                .antMatchers("/").permitAll()
+//                .antMatchers("/").authenticated()
+//                .antMatchers("/api/**").authenticated()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/registration").permitAll()
+//                .and().formLogin().loginPage("/login")
                 .and().csrf().disable()
                 .logout()
                 .logoutUrl("/logout")
