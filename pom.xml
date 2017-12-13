@@ -7,7 +7,7 @@
     <groupId>Kataeva</groupId>
     <artifactId>project</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>university</name>
     <description>Demo</description>
