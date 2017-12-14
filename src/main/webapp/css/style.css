@@ -1,0 +1,221 @@
+@charset "UTF-8";
+
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.project-detail {
+    width: 96%;
+    padding: 2%;
+    background-color: #f7f7f7;
+    max-width: 100%;
+}
+
+.project-detail .field {
+    width: 100%;
+}
+
+.project-detail .field .name {
+    text-transform: uppercase;
+}
+
+.project-detail .field .name,
+.project-detail .field .description {
+    width: 96%;
+    padding: 2%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 2px solid silver;
+    margin: 20px 0;
+}
+
+
+.project-detail .field .description {
+    text-align: left;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.project-detail .field .description:before {
+    content: 'Описание: ';
+    font-size: 16px;
+    font-weight: bolder;
+    float: left;
+}
+
+.project-detail .add {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.project-detail .add .list {
+    list-style-type: none;
+}
+
+
+
+.project-detail .add .list .item .title{
+    display: inline-block;
+    transition: .8s;
+}
+
+.project-detail .add .list .active .title{
+    display: none;
+    transition: .8s;
+
+}
+
+
+.project-detail .add .list .active .form {
+    transition: .8s;
+    height: auto;
+    background-color: rgba(0,0,0,0)!important;
+}
+
+.project-detail .add .list .item .form {
+    background-color: #e4e4e499;
+    text-align: center;
+    width: 80%;
+    height: 40px;
+    float: left;
+    transition: .5s;
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 10px 40px 10px 0;
+}
+
+
+.project-detail .add .list .active .form {
+    width: 80%;
+    float: none;
+    display: inline-block;
+    outline: none;
+
+}
+
+.project-detail .add .list .item .form .input {
+    display: none;
+    transition: .5s;
+    border: 2px solid silver;
+}
+
+.project-detail .add .list .active .form .input  {
+    display: inline-block;
+    transition: .5s;
+}
+
+.project-detail .add-field,
+.project-detail .delete-field,
+.project-detail .submit {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 30%;
+    width: 40%;
+    height: auto;
+    transition: .5s;
+}
+
+.project-detail .add .list .active .form .not-valid  {
+    border: 2px solid #ed4a4a8f;
+}
+
+.project-detail .read {
+    display: inline-block;
+    width: 100%;
+    min-height: 100px;
+}
+
+.project-detail .read .list {
+    width: 100%;
+}
+
+.project-detail .read .list .active {
+    margin-top: 20px;
+    width: 60%;
+    margin-left: 20%;
+    display: inline-block;
+    border: 2px solid silver;
+    transition: .6s;
+}
+
+.project-detail .read .list .item {
+    margin-top: 20px;
+    width: 70%;
+    margin-left: 15%;
+    background-color: #e4e4e499;
+    display: inline-block;
+    border: 2px solid silver;
+    transition: .6s;
+}
+
+.project-detail .read .list .item .delete {
+    display: none;
+}
+.project-detail .read .list .active .delete {
+    display: none;
+}
+
+
+.project-detail .read .list .active .content .field:first-child {
+    display: inline-block;
+    width: 100%;
+    padding: 3%;
+}
+
+.project-detail .read .list .title {
+    width: 96%;
+    padding: 2%;
+    text-align: center;
+    border-bottom: 2px solid silver;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.project-detail .read .list .item .title {
+    display: none;
+}
+
+.project-detail .read .list .item .content .field:first-child {
+    display: inline-block!important;
+    text-align: center!important;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.project-detail .read .list .item .content .field {
+    display: none;
+    transition: .6s;
+}
+
+.project-detail .read .list .active .content .field {
+    display: inline-block;
+    width: 100%;
+    padding: 2%;
+    border-bottom: 1px solid silver;
+    transition: .6s;
+}
+
+
+
+.project-detail .read .list .active .content .field .label,
+.project-detail .read .list .active .content .field .value {
+    display: table-cell;
+}
+
+.project-detail .read .list .active .content .field .label {
+    width: 30%;
+    color: silver;
+    font-size: 14px;
+}
+
+.project-detail .read .list .active .content .field .value {
+    width: 70%;
+}

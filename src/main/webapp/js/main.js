@@ -18,8 +18,6 @@ $(document).on("click", ".read-all-project", function () {
     project.readAll();
 });
 
-console.log("ok");
-
 function Project() {
     this.id = '';
     this.name = '';
@@ -158,82 +156,143 @@ Project.prototype.readAll = function () {
     });
 };
 
-let numbers = ["pessimistic_assessment", "probable_assessment", "optimistic_assessment"];
+let numbers = ["pessimisticAssessment", "probableAssessment", "optimisticAssessment"];
 
 let setTitles = function () {
-    // let items = $(".add .item");
-    // for (let index = 0; index < items.length; index++) {
-    //     $(items[index]).find(".title").text($(items[index]).find("input[name='name']").val());
-    // }
+    let items = $(".add .item");
+    for (let index = 0; index < items.length; index++) {
+        $(items[index]).find(".title").text($(items[index]).find("input[name='name']").val());
+    }
 };
 
 let addStageForm = function () {
     let itemObject = $(".item");
     itemObject.removeClass("active");
-    $(".add .list").append("<li class='item active'>" + itemObject.html() + "</li>");
+    $(".add .list").append(`<li class="item active">
+                                <div class="form">
+                                    <div class="title"></div>
+                                    <div class="form-group">
+                                        <input type="text" class="input form-control" name="name" placeholder="Название">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="input form-control" name="description" placeholder="Описание">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="input form-control" name="pessimisticAssessment"
+                                               placeholder="Пессимистическая оценка">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="input form-control" name="probableAssessment"
+                                               placeholder="Вероятная оценка">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="input form-control" name="optimisticAssessment"
+                                               placeholder="Оптимистическая оценка">
+                                    </div>
+                                </div>
+                            </li>`);
     setTitles()
+};
+
+let removeStageForm = function () {
+    $(".add .list .item:last-child").remove();
 };
 
 let addStages = function () {
     let projectId = $(".add .list").data('id');
     let forms = $(".add .form");
     let data = [];
+    let notNullOrEmpty = true;
     for (let index = 0; index < forms.length; index++) {
         let form = $(forms[index]).find(".input");
         let formObject = {};
         for (let inputIndex = 0; inputIndex < form.length; inputIndex++) {
             if (numbers.indexOf($(form[inputIndex]).attr("name")) !== -1) {
                 formObject[$(form[inputIndex]).attr("name")] = $(form[inputIndex]).val();
+                notNullOrEmpty = notNullOrEmpty && ($(form[inputIndex]).val() !== null) && (!isNaN(parseInt($(form[inputIndex]).val()))) && ($(form[inputIndex]).val() !== "");
+                if (parseInt($(form[inputIndex]).val()) > 0 && $(form[inputIndex]).val() !== "") {
+                    $(form[inputIndex]).removeClass("not-valid");
+                    console.log(parseInt($(form[inputIndex]).val()));
+                } else {
+                    $(form[inputIndex]).addClass("not-valid");
+                }
+
             } else {
                 formObject[$(form[inputIndex]).attr("name")] = $(form[inputIndex]).val();
+                notNullOrEmpty = notNullOrEmpty && ($(form[inputIndex]).val() !== null) && ($(form[inputIndex]).val() !== "");
+                if (($(form[inputIndex]).val() === null) || ($(form[inputIndex]).val() === "")) {
+                    $(form[inputIndex]).addClass("not-valid");
+                } else {
+                    $(form[inputIndex]).removeClass("not-valid");
+                }
             }
         }
         data.push(formObject);
     }
-    data = JSON.stringify(data);
-    $.ajax({
-        type: "POST",
-        url: "/api/stage/" + projectId,
-        data: data,
-        contentType: "application/json",
-        success: function (data) {
-            var template = ``;
-            for (var index = 0; index < data.length; index++) {
-                template += `<div class="item active" style="float: left" data-project-id="${data[index].id}" data-stage-id="${data[index].id}">
+
+    // console.log(parseInt(data[0].optimisticAssessment));
+
+    if (notNullOrEmpty) {
+        for (let index = 0; index < forms.length; index++) {
+            let form = $(forms[index]).find(".input");
+            for (let inputIndex = 0; inputIndex < form.length; inputIndex++) {
+                $(form[inputIndex]).val("");
+                $(form[inputIndex]).removeClass("not-valid");
+            }
+        }
+        data = JSON.stringify(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/stage/" + projectId,
+            data: data,
+            contentType: "application/json",
+            success: function (data) {
+                let template = ``;
+                let className;
+                for (let index = 0; index < data.length; index++) {
+                    className = (index + 1 === data.length) ? " active" : "";
+                    template += `<li class="item${className}" data-project-id="${data[index].id}" data-stage-id="${data[index].id}">
                                 <div class="title"></div>
                                 <div class="update" style="display:none;" data-stage-id="${data[index].id}">update</div>
                                 <div class="delete" data-delete-id="${data[index].id}">delete</div>
                                 <div class="content">
-                                    <span class="field" data-key="name" data-value="${data[index].name}">
-                                        <span class="label">name</span>
-                                        <span class="value">${data[index].name}</span>
-                                    </span>
-                                    <span class="field" data-key="description" data-value="${data[index].description}">
-                                        <span class="label">description</span>
-                                        <span class="value">${data[index].description}</span>
-                                    </span>
-                                    <span class="field" data-key="pessimisticAssessment" data-value="${data[index].pessimisticAssessment}">
-                                        <span class="label">pessimistic_assessment</span>
-                                        <span class="value">${data[index].pessimisticAssessment}</span>
-                                    </span>
-                                    <span class="field" data-key="probableAssessment" data-value="${data[index].probableAssessment}">
-                                        <span class="label">probable_assessment</span>
-                                        <span class="value">${data[index].probableAssessment}</span>
-                                    </span>
-                                    <span class="field" data-key="optimisticAssessment" data-value="${data[index].optimisticAssessment}">
-                                        <span class="label">optimistic_assessment</span>
-                                        <span class="value">${data[index].optimisticAssessment}</span>
-                                    </span>
+                                    <div class="field" data-key="name" data-value="${data[index].name}">
+                                        <div class="value">${data[index].name}</div>
+                                    </div>
+                                    <div class="field" data-key="description" data-value="${data[index].description}">
+                                        <div class="label">description</div>
+                                        <div class="value">${data[index].description}</div>
+                                    </div>
+                                    <div class="field" data-key="pessimisticAssessment" data-value="${data[index].pessimisticAssessment}">
+                                        <div class="label">pessimistic_assessment</div>
+                                        <div class="value">${data[index].pessimisticAssessment}</div>
+                                    </div>
+                                    <div class="field" data-key="probableAssessment" data-value="${data[index].probableAssessment}">
+                                        <div class="label">probable_assessment</div>
+                                        <div class="value">${data[index].probableAssessment}</div>
+                                    </div>
+                                    <div class="field" data-key="optimisticAssessment" data-value="${data[index].optimisticAssessment}">
+                                        <div class="label">optimistic_assessment</div>
+                                        <div class="value">${data[index].optimisticAssessment}</div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="label">optimistic_assessment</div>
+                                        <div class="value">${data[index].badProbability}</div>
+                                    </div>
                                 </div>
-                                <span class="total">
-                                    <span class="label">optimistic_assessment</span>
-                                    <span class="value">${data[index].badProbability}</span>
-                                </span>
-                            </div>`
+                            </li>`
+                }
+                $(".read .list").html(template);
+                if ($(".add .message").length !== 0) {
+                    $(".add .message").remove();
+                }
             }
-            $(".read .list").html(template);
+        })
+    } else {
+        if ($(".add .message").length === 0) {
+            $(".add").append("<div class='message alert alert-warning' role='alert'>Поля должны быть запонены</div>");
         }
-    })
+    }
 };
 
 let updateFormInit = function (object) {
@@ -281,8 +340,7 @@ let deleteStage = function (object) {
         type: "DELETE",
         url: "/api/stage/" + stageId,
         success: function (data) {
-            if (data)
-                $(".read .list li[data-stage-id='" + stageId + "']").remove();
+            $(".read .list .item[data-stage-id='" + stageId + "']").remove();
         }
     })
 };
@@ -292,6 +350,10 @@ $(document).on("click", ".add-field", function () {
     addStageForm();
 });
 
+$(document).on("click", ".delete-field", function () {
+    removeStageForm();
+});
+
 $(document).on("click", ".add .item", function () {
     if ($(this).hasClass("active")) {
     } else {
@@ -299,6 +361,15 @@ $(document).on("click", ".add .item", function () {
         $(this).addClass("active")
     }
     setTitles();
+});
+
+$(document).on("click", ".read .item", function () {
+    console.log($(this).hasClass("active"));
+    if ($(this).hasClass("active")) {
+        $(this).removeClass("active");
+    } else {
+        $(this).addClass("active")
+    }
 });
 
 

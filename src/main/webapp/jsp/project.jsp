@@ -12,6 +12,7 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,77 +72,49 @@
                     <div class="description">${project.description}</div>
                     <section class="stages-block add">
                         <ul class="list" data-id="${project.id}">
-                            <li class="item active">
-                                <div class="form">
-                                    <div class="title"></div>
-                                    <div class="form-group">
-                                        <input type="text" class="input" name="name" placeholder="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="input" name="description" placeholder="description">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="input" name="pessimisticAssessment"
-                                               placeholder="pessimistic_assessment">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="input" name="probableAssessment"
-                                               placeholder="probable_assessment">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="input" name="optimisticAssessment"
-                                               placeholder="optimistic_assessment">
-                                    </div>
-                                </div>
-                            </li>
+
                         </ul>
-                        <div class="add-field">add stage</div>
-                        <div class="submit">send</div>
+                        <div class="add-field btn btn-default">Добавить ещё</div>
+                        <div class="delete-field btn btn-default">Удалить последнюю форму</div>
+                        <div class="submit btn btn-default">Добавить</div>
                     </section>
                     <section class="stages-block read">
                         <div class="list table table-striped">
-
-                            <div style="float:left;" class="item active">
-                                <div style="float: left">
-                                    <span>name</span>
-                                    <span>description</span>
-                                    <span>pessimistic_assessment</span>
-                                    <span>probable_assessment</span>
-                                    <span>optimistic_assessment</span>
-                                    <span>bad_assessment</span>
-
-                                </div>
-                            </div>
-                            <br>
+                            <div class="title">Этапы</div>
                             <c:forEach items="${project.stages}" var="stage">
-                                <br><div style="float:left;" class="item active" data-project-id="${project.id}"
-                                    data-stage-id="${stage.id}">
-                                        <%--<div class="title"></div>--%>
+                                <div class="item" data-project-id="${project.id}"
+                                     data-stage-id="${stage.id}">
+                                    <div class="title"></div>
                                     <div class="update" style="display: none" data-stage-id="${stage.id}">update</div>
-                                    <span class="delete" data-delete-id="${stage.id}">delete</span>
-                                    <span class="content">
-                                    <span class="field" data-key="name" data-value="${stage.name}">
-                                        <span class="value">${stage.name}</span>
-                                    </span>
-                                    <span class="field" data-key="description" data-value="${stage.description}">
-                                        <span class="value">${stage.description}</span>
-                                    </span>
-                                    <span class="field" data-key="pessimisticAssessment"
-                                          data-value="${stage.pessimisticAssessment}">
-                                        <span class="value">${stage.pessimisticAssessment}</span>
-                                    </span>
-                                    <span class="field" data-key="probableAssessment"
-                                          data-value="${stage.probableAssessment}">
-                                        <span class="value">${stage.probableAssessment}</span>
-                                    </span>
-                                    <span class="field" data-key="optimisticAssessment"
-                                          data-value="${stage.optimisticAssessment}">
-                                        <span class="value">${stage.optimisticAssessment}</span>
-                                    </span>
-                                </span>
-                                    <span class="total">
-                                    <span class="value">${stage.badProbability}</span>
-                                </span>
+                                    <div class="delete" data-delete-id="${stage.id}">delete</div>
+                                    <div class="content">
+                                        <div class="field" data-key="name" data-value="${stage.name}">
+                                            <div class="value">${stage.name}</div>
+                                        </div>
+                                        <div class="field" data-key="description" data-value="${stage.description}">
+                                            <div class="label">Описание</div>
+                                            <div class="value">${stage.description}</div>
+                                        </div>
+                                        <div class="field" data-key="pessimisticAssessment"
+                                             data-value="${stage.pessimisticAssessment}">
+                                            <div class="label">Пессимистическая оценка</div>
+                                            <div class="value">${stage.pessimisticAssessment}</div>
+                                        </div>
+                                        <div class="field" data-key="probableAssessment"
+                                             data-value="${stage.probableAssessment}">
+                                            <div class="label">Вероятная оценка</div>
+                                            <div class="value">${stage.probableAssessment}</div>
+                                        </div>
+                                        <div class="field" data-key="optimisticAssessment"
+                                             data-value="${stage.optimisticAssessment}">
+                                            <div class="label">Оптимистическая оценка</div>
+                                            <div class="value">${stage.optimisticAssessment}</div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="label">Вычисленная оценка</div>
+                                            <div class="value">${stage.badProbability}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </c:forEach>
                         </div>
