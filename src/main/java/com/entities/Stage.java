@@ -99,8 +99,11 @@ public class Stage {
     }
 
     public double getBadProbability() {
-        double first = (optimisticAssessment + pessimisticAssessment + 4 * probableAssessment);
-        return (first / 6);
+        if (optimisticAssessment!=null&&pessimisticAssessment!=null&&probableAssessment!=null) {
+            double first = (optimisticAssessment + pessimisticAssessment + 4 * probableAssessment);
+            return (first / 6);
+        }
+        else return 0;
     }
 
     @Override

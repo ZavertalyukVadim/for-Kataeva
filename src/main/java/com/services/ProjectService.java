@@ -31,10 +31,10 @@ public class ProjectService {
         return list;
     }
 
-    public boolean addProject(Project project) {
+    public Integer addProject(Project project) {
         project.setUser(getCurrentUser());
         Project save = projectDao.save(project);
-        return save != null;
+        return save.getId();
     }
 
     public Project updateProject(Integer id,Project project) {

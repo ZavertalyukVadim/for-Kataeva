@@ -34,34 +34,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">HUETA</a>
+            <a class="navbar-brand" href="#">Project</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
+                <li><a href="/" class="active">Главная <span class="sr-only">(current)</span></a></li>
             </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
@@ -82,52 +63,62 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <div class="panel panel-default">
-        <div>
-            <div class="projects">
-                <c:forEach items="${projects}" var="project">
-                    <div class="project-item" data-id="${project.id}">
-                        <div class="field">
-                            <div class="label">Title</div>
-                            <div class="value"><a href="/project/${project.id}">${project.name}</a></div>
-                        </div>
-                        <div class="field">
-                            <div class="label">Description</div>
-                            <div class="value">${project.description}</div>
-                        </div>
-                        <div class="field">
-                            <div class="label">Normal probability</div>
-                            <div class="value">${project.normalProbability}</div>
-                        </div>
-                    </div><hr>
-                </c:forEach>
-            </div>
-
+    <div>
+        <div class="projects">
+            <c:forEach items="${projects}" var="project">
+                <div class="project-item" data-id="${project.id}">
+                    <div class="field">
+                        <div class="label">Title</div>
+                        <div class="value"><a href="/project/${project.id}">${project.name}</a></div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Description</div>
+                        <div class="value">${project.description}</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Normal probability</div>
+                        <div class="value">${project.normalProbability}</div>
+                    </div>
+                </div>
+                <hr>
+            </c:forEach>
         </div>
 
+    </div>
+
+    <div class="container">
         <div class="project-form add">
-            <input type="text" class="input" name="name" placeholder="name">
-            <input type="text" class="input" name="description" placeholder="Description">
-            <input type="submit" class="add-project" value="ok">
+            <div class="form-group"><input type="text" class="input form-control" name="name" placeholder="name"></div>
+            <div class="form-group"><input type="text" class="input form-control" name="description"
+                                           placeholder="Description"></div>
+            <div class="form-group"><input type="submit" class="add-project btn btn-default" value="ok"></div>
         </div>
-        <div class="project-form update">
-            <input type="hidden" class="input" name="id" value="1">
-            <input type="text" class="input" name="name" placeholder="name">
-            <input type="text" class="input" name="description" placeholder="Description">
-            <input type="submit" class="update-project" value="ok">
-        </div>
-        <div class="project-form delete">
-            <input type="hidden" class="input" name="id" value="1">
-            <input type="submit" class="delete-project" value="ok">
-        </div>
+    </div>
 
+    <div class="container">
+        <div class="project-form update">
+            <div class="form-group"><input type="hidden" class="input form-control" name="id" value="1"></div>
+            <div class="form-group"><input type="text" class="input form-control" name="name" placeholder="name"></div>
+            <div class="form-group"><input type="text" class="input form-control" name="description"
+                                           placeholder="Description"></div>
+            <div class="form-group"><input type="submit" class="update-project btn btn-default" value="ok"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="project-form delete">
+            <div class="form-group"><input type="text" class="input form-control" name="id"></div>
+            <div class="form-group"><input type="submit" class="delete-project btn btn-default" value="ok"></div>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="project-form read">
-            <input type="text" class="input" name="id" placeholder="id">
-            <input type="submit" class="read-project" value="one">
+            <div class="form-group"><input type="text" class="input form-control" name="id" placeholder="id"></div>
+            <div class="form-group"><input type="submit" class="read-project btn btn-default" value="one"></div>
         </div>
-        <div class="project-form read-all">
-            <input type="submit" class="read-all-project" value="all">
-        </div>
+    </div>
+    <div class="project-form read-all" style="display: none">
+        <input type="submit" class="read-all-project" value="all">
     </div>
 </div>
 

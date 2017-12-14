@@ -35,6 +35,7 @@ Project.prototype.create = function () {
         description: this.description
     };
 
+    let printData = data;
     this.jsonData = JSON.stringify(data);
 
     $.ajax({
@@ -43,7 +44,25 @@ Project.prototype.create = function () {
         data: this.jsonData,
         contentType: "application/json",
         success: function (data) {
-            console.log(data)
+            if (data > 0) {
+                project = printData;
+                let template = `<div class="project-item" data-id="${data}">
+                    <div class="field">
+                        <div class="label">Title</div>
+                        <div class="value"><a href="/project/${data}">${project.name}</a></div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Description</div>
+                        <div class="value">${project.description}</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">Normal probability</div>
+                        <div class="value">${0.0}</div>
+                    </div>
+                </div>
+                <hr>`;
+                $(".projects").append(template);
+            }
         }
     });
 };
@@ -146,10 +165,10 @@ Project.prototype.readAll = function () {
 let numbers = ["pessimistic_assessment", "probable_assessment", "optimistic_assessment"];
 
 let setTitles = function () {
-    let items = $(".add .item");
-    for (let index = 0; index < items.length; index++) {
-        $(items[index]).find(".title").text($(items[index]).find("input[name='name']").val());
-    }
+    // let items = $(".add .item");
+    // for (let index = 0; index < items.length; index++) {
+    //     $(items[index]).find(".title").text($(items[index]).find("input[name='name']").val());
+    // }
 };
 
 let addStageForm = function () {
@@ -182,7 +201,41 @@ let addStages = function () {
         data: data,
         contentType: "application/json",
         success: function (data) {
-            console.log(data)
+            var template = ``;
+            for (var index = 0; index < data.length; index++) {
+                template += `<li class="item active" data-project-id="${data[index].id}" data-stage-id="${data[index].id}">
+                                <div class="title"></div>
+                                <div class="update" style="display:none;" data-stage-id="${data[index].id}">update</div>
+                                <div class="delete" data-delete-id="${data[index].id}">delete</div>
+                                <div class="content">
+                                    <div class="field" data-key="name" data-value="${data[index].name}">
+                                        <div class="label">name</div>
+                                        <div class="value">${data[index].name}</div>
+                                    </div>
+                                    <div class="field" data-key="description" data-value="${data[index].description}">
+                                        <div class="label">description</div>
+                                        <div class="value">${data[index].description}</div>
+                                    </div>
+                                    <div class="field" data-key="pessimisticAssessment" data-value="${data[index].pessimisticAssessment}">
+                                        <div class="label">pessimistic_assessment</div>
+                                        <div class="value">${data[index].pessimisticAssessment}</div>
+                                    </div>
+                                    <div class="field" data-key="probableAssessment" data-value="${data[index].probableAssessment}">
+                                        <div class="label">probable_assessment</div>
+                                        <div class="value">${data[index].probableAssessment}</div>
+                                    </div>
+                                    <div class="field" data-key="optimisticAssessment" data-value="${data[index].optimisticAssessment}">
+                                        <div class="label">optimistic_assessment</div>
+                                        <div class="value">${data[index].optimisticAssessment}</div>
+                                    </div>
+                                </div>
+                                <div class="total">
+                                    <div class="label">optimistic_assessment</div>
+                                    <div class="value">${data[index].badProbability}</div>
+                                </div>
+                            </li>`
+            }
+            $(".read .list").html(template);
         }
     })
 };
@@ -232,7 +285,8 @@ let deleteStage = function (object) {
         type: "DELETE",
         url: "/api/stage/" + stageId,
         success: function (data) {
-            console.log(data);
+            if (data)
+                $(".read .list li[data-stage-id='" + stageId + "']").remove();
         }
     })
 };

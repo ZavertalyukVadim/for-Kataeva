@@ -38,7 +38,7 @@ public class ProjectController {
     }
 
     @PostMapping
-    public boolean addProject(@RequestBody Project project){
+    public Integer addProject(@RequestBody Project project){
         return projectService.addProject(project);
     }
 
