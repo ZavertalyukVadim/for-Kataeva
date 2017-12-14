@@ -6,6 +6,8 @@ import com.entities.Project;
 import com.entities.Stage;
 import com.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,10 +27,12 @@ public class ProjectService {
     }
 
     public List<Project> getAllProjects() {
-        return projectDao.findAll();
+        List<Project> list = projectDao.findAllByUser(getCurrentUser());
+        return list;
     }
 
     public boolean addProject(Project project) {
+        project.setUser(getCurrentUser());
         Project save = projectDao.save(project);
         return save != null;
     }
@@ -75,5 +79,18 @@ public class ProjectService {
             return true;
         }
         return false;
+    }
+
+    private User getCurrentUser() {
+        User user = userDao.findUserByUsername(getUserEmail());
+        return user;
+    }
+
+    private String getUserEmail() {
+        return getUserDetails().getName();
+    }
+
+    private Authentication getUserDetails() {
+        return SecurityContextHolder.getContext().getAuthentication();
     }
 }
