@@ -81,13 +81,16 @@
                                         <input type="text" class="input" name="description" placeholder="description">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="input" name="pessimisticAssessment" placeholder="pessimistic_assessment">
+                                        <input type="text" class="input" name="pessimisticAssessment"
+                                               placeholder="pessimistic_assessment">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="input" name="probableAssessment" placeholder="probable_assessment">
+                                        <input type="text" class="input" name="probableAssessment"
+                                               placeholder="probable_assessment">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="input" name="optimisticAssessment" placeholder="optimistic_assessment">
+                                        <input type="text" class="input" name="optimisticAssessment"
+                                               placeholder="optimistic_assessment">
                                     </div>
                                 </div>
                             </li>
@@ -96,42 +99,53 @@
                         <div class="submit">send</div>
                     </section>
                     <section class="stages-block read">
-                        <ul class="list">
+                        <div class="list table table-striped">
+
+                            <div style="float:left;" class="item active">
+                                <div style="float: left">
+                                    <span>name</span>
+                                    <span>description</span>
+                                    <span>pessimistic_assessment</span>
+                                    <span>probable_assessment</span>
+                                    <span>optimistic_assessment</span>
+                                    <span>bad_assessment</span>
+
+                                </div>
+                            </div>
+                            <br>
                             <c:forEach items="${project.stages}" var="stage">
-                            <li class="item active" data-project-id="${project.id}" data-stage-id="${stage.id}">
-                                <div class="title"></div>
-                                <div class="update" style="display: none" data-stage-id="${stage.id}">update</div>
-                                <div class="delete" data-delete-id="${stage.id}">delete</div>
-                                <div class="content">
-                                    <div class="field" data-key="name" data-value="${stage.name}">
-                                        <div class="label">name</div>
-                                        <div class="value">${stage.name}</div>
-                                    </div>
-                                    <div class="field" data-key="description" data-value="${stage.description}">
-                                        <div class="label">description</div>
-                                        <div class="value">${stage.description}</div>
-                                    </div>
-                                    <div class="field" data-key="pessimisticAssessment" data-value="${stage.pessimisticAssessment}">
-                                        <div class="label">pessimistic_assessment</div>
-                                        <div class="value">${stage.pessimisticAssessment}</div>
-                                    </div>
-                                    <div class="field" data-key="probableAssessment" data-value="${stage.probableAssessment}">
-                                        <div class="label">probable_assessment</div>
-                                        <div class="value">${stage.probableAssessment}</div>
-                                    </div>
-                                    <div class="field" data-key="optimisticAssessment" data-value="${stage.optimisticAssessment}">
-                                        <div class="label">optimistic_assessment</div>
-                                        <div class="value">${stage.optimisticAssessment}</div>
-                                    </div>
+                                <br><div style="float:left;" class="item active" data-project-id="${project.id}"
+                                    data-stage-id="${stage.id}">
+                                        <%--<div class="title"></div>--%>
+                                    <div class="update" style="display: none" data-stage-id="${stage.id}">update</div>
+                                    <span class="delete" data-delete-id="${stage.id}">delete</span>
+                                    <span class="content">
+                                    <span class="field" data-key="name" data-value="${stage.name}">
+                                        <span class="value">${stage.name}</span>
+                                    </span>
+                                    <span class="field" data-key="description" data-value="${stage.description}">
+                                        <span class="value">${stage.description}</span>
+                                    </span>
+                                    <span class="field" data-key="pessimisticAssessment"
+                                          data-value="${stage.pessimisticAssessment}">
+                                        <span class="value">${stage.pessimisticAssessment}</span>
+                                    </span>
+                                    <span class="field" data-key="probableAssessment"
+                                          data-value="${stage.probableAssessment}">
+                                        <span class="value">${stage.probableAssessment}</span>
+                                    </span>
+                                    <span class="field" data-key="optimisticAssessment"
+                                          data-value="${stage.optimisticAssessment}">
+                                        <span class="value">${stage.optimisticAssessment}</span>
+                                    </span>
+                                </span>
+                                    <span class="total">
+                                    <span class="value">${stage.badProbability}</span>
+                                </span>
                                 </div>
-                                <div class="total">
-                                    <div class="label">optimistic_assessment</div>
-                                    <div class="value">${stage.badProbability}</div>
-                                </div>
-                            </li>
                             </c:forEach>
-                        </ul>
-                        <div class="update-popup">
+                        </div>
+                        <div class="update-popup" style="display: none;">
                             <div class="form"></div>
                             <div class="submit" style="display: none">Update</div>
                         </div>

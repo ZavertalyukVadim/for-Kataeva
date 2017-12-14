@@ -64,29 +64,33 @@
 </nav>
 <div class="container">
     <div>
-        <div class="projects">
+            <table class="table table-striped projects">
+                <th>Title</th>
+                <th>Description</th>
+                <th>Normal probability</th>
             <c:forEach items="${projects}" var="project">
-                <div class="project-item" data-id="${project.id}">
-                    <div class="field">
-                        <div class="label">Title</div>
+
+                <tr class="project-item" data-id="${project.id}">
+                    <td class="field">
                         <div class="value"><a href="/project/${project.id}">${project.name}</a></div>
-                    </div>
-                    <div class="field">
-                        <div class="label">Description</div>
+                    </td>
+                    <td class="field">
                         <div class="value">${project.description}</div>
-                    </div>
-                    <div class="field">
-                        <div class="label">Normal probability</div>
+                    </td>
+                    <td class="field">
                         <div class="value">${project.normalProbability}</div>
-                    </div>
-                </div>
-                <hr>
+                    </td>
+                </tr>
             </c:forEach>
-        </div>
+            </table>
+
 
     </div>
 
     <div class="container">
+        <div class="panel-heading">
+            <h3 class="panel-title">Создание проекта</h3>
+        </div>
         <div class="project-form add">
             <div class="form-group"><input type="text" class="input form-control" name="name" placeholder="name"></div>
             <div class="form-group"><input type="text" class="input form-control" name="description"
@@ -96,8 +100,11 @@
     </div>
 
     <div class="container">
+        <div class="panel-heading">
+            <h3 class="panel-title">Обновление проекта</h3>
+        </div>
         <div class="project-form update">
-            <div class="form-group"><input type="hidden" class="input form-control" name="id" value="1"></div>
+            <div class="form-group"><input type="text" class="input form-control" name="id"></div>
             <div class="form-group"><input type="text" class="input form-control" name="name" placeholder="name"></div>
             <div class="form-group"><input type="text" class="input form-control" name="description"
                                            placeholder="Description"></div>
@@ -105,21 +112,24 @@
         </div>
     </div>
     <div class="container">
+        <div class="panel-heading">
+            <h3 class="panel-title">Удаление проекта</h3>
+        </div>
         <div class="project-form delete">
             <div class="form-group"><input type="text" class="input form-control" name="id"></div>
             <div class="form-group"><input type="submit" class="delete-project btn btn-default" value="ok"></div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="project-form read">
-            <div class="form-group"><input type="text" class="input form-control" name="id" placeholder="id"></div>
-            <div class="form-group"><input type="submit" class="read-project btn btn-default" value="one"></div>
-        </div>
-    </div>
-    <div class="project-form read-all" style="display: none">
-        <input type="submit" class="read-all-project" value="all">
-    </div>
+    <%--<div class="container">--%>
+        <%--<div class="project-form read">--%>
+            <%--<div class="form-group"><input type="text" class="input form-control" name="id" placeholder="id"></div>--%>
+            <%--<div class="form-group"><input type="submit" class="read-project btn btn-default" value="one"></div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+    <%--<div class="project-form read-all" style="display: none">--%>
+        <%--<input type="submit" class="read-all-project" value="all">--%>
+    <%--</div>--%>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

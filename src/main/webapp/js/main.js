@@ -46,21 +46,17 @@ Project.prototype.create = function () {
         success: function (data) {
             if (data > 0) {
                 project = printData;
-                let template = `<div class="project-item" data-id="${data}">
-                    <div class="field">
-                        <div class="label">Title</div>
+                let template = `<tr class="project-item" data-id="${data}">
+                    <td class="field">
                         <div class="value"><a href="/project/${data}">${project.name}</a></div>
-                    </div>
-                    <div class="field">
-                        <div class="label">Description</div>
+                    </td>
+                    <td class="field">
                         <div class="value">${project.description}</div>
-                    </div>
-                    <div class="field">
-                        <div class="label">Normal probability</div>
-                        <div class="value">${0.0}</div>
-                    </div>
-                </div>
-                <hr>`;
+                    </td>
+                    <td class="field">
+                        <div class="value">${"0.0"}</div>
+                    </td>
+                </tr>`;
                 $(".projects").append(template);
             }
         }
@@ -203,37 +199,37 @@ let addStages = function () {
         success: function (data) {
             var template = ``;
             for (var index = 0; index < data.length; index++) {
-                template += `<li class="item active" data-project-id="${data[index].id}" data-stage-id="${data[index].id}">
+                template += `<div class="item active" style="float: left" data-project-id="${data[index].id}" data-stage-id="${data[index].id}">
                                 <div class="title"></div>
                                 <div class="update" style="display:none;" data-stage-id="${data[index].id}">update</div>
                                 <div class="delete" data-delete-id="${data[index].id}">delete</div>
                                 <div class="content">
-                                    <div class="field" data-key="name" data-value="${data[index].name}">
-                                        <div class="label">name</div>
-                                        <div class="value">${data[index].name}</div>
-                                    </div>
-                                    <div class="field" data-key="description" data-value="${data[index].description}">
-                                        <div class="label">description</div>
-                                        <div class="value">${data[index].description}</div>
-                                    </div>
-                                    <div class="field" data-key="pessimisticAssessment" data-value="${data[index].pessimisticAssessment}">
-                                        <div class="label">pessimistic_assessment</div>
-                                        <div class="value">${data[index].pessimisticAssessment}</div>
-                                    </div>
-                                    <div class="field" data-key="probableAssessment" data-value="${data[index].probableAssessment}">
-                                        <div class="label">probable_assessment</div>
-                                        <div class="value">${data[index].probableAssessment}</div>
-                                    </div>
-                                    <div class="field" data-key="optimisticAssessment" data-value="${data[index].optimisticAssessment}">
-                                        <div class="label">optimistic_assessment</div>
-                                        <div class="value">${data[index].optimisticAssessment}</div>
-                                    </div>
+                                    <span class="field" data-key="name" data-value="${data[index].name}">
+                                        <span class="label">name</span>
+                                        <span class="value">${data[index].name}</span>
+                                    </span>
+                                    <span class="field" data-key="description" data-value="${data[index].description}">
+                                        <span class="label">description</span>
+                                        <span class="value">${data[index].description}</span>
+                                    </span>
+                                    <span class="field" data-key="pessimisticAssessment" data-value="${data[index].pessimisticAssessment}">
+                                        <span class="label">pessimistic_assessment</span>
+                                        <span class="value">${data[index].pessimisticAssessment}</span>
+                                    </span>
+                                    <span class="field" data-key="probableAssessment" data-value="${data[index].probableAssessment}">
+                                        <span class="label">probable_assessment</span>
+                                        <span class="value">${data[index].probableAssessment}</span>
+                                    </span>
+                                    <span class="field" data-key="optimisticAssessment" data-value="${data[index].optimisticAssessment}">
+                                        <span class="label">optimistic_assessment</span>
+                                        <span class="value">${data[index].optimisticAssessment}</span>
+                                    </span>
                                 </div>
-                                <div class="total">
-                                    <div class="label">optimistic_assessment</div>
-                                    <div class="value">${data[index].badProbability}</div>
-                                </div>
-                            </li>`
+                                <span class="total">
+                                    <span class="label">optimistic_assessment</span>
+                                    <span class="value">${data[index].badProbability}</span>
+                                </span>
+                            </div>`
             }
             $(".read .list").html(template);
         }
