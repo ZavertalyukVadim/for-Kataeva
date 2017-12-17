@@ -32,12 +32,15 @@ public class StageService {
     }
 
     public Stage updateStage(Integer id, Stage stage) {
-        Stage one = stageDao.findOne(id);
+        Project project = projectDao.findOne(id);
+        Stage one = stageDao.findOne(stage.getId());
         one.setDescription(stage.getDescription());
         one.setName(stage.getName());
         one.setOptimisticAssessment(stage.getOptimisticAssessment());
         one.setProbableAssessment(stage.getProbableAssessment());
         one.setPessimisticAssessment(stage.getPessimisticAssessment());
+        one.setProject(project);
+        project.addStage(one);
         return stageDao.save(one);
     }
 
