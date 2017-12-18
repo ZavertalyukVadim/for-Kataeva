@@ -260,23 +260,23 @@ let addStages = function () {
                                         <div class="value">${data[index].name}</div>
                                     </div>
                                     <div class="field" data-key="description" data-value="${data[index].description}">
-                                        <div class="label">description</div>
+                                        <div class="label">Описание</div>
                                         <div class="value">${data[index].description}</div>
                                     </div>
                                     <div class="field" data-key="pessimisticAssessment" data-value="${data[index].pessimisticAssessment}">
-                                        <div class="label">pessimistic_assessment</div>
+                                        <div class="label">Пессимистическая оценка</div>
                                         <div class="value">${data[index].pessimisticAssessment}</div>
                                     </div>
                                     <div class="field" data-key="probableAssessment" data-value="${data[index].probableAssessment}">
-                                        <div class="label">probable_assessment</div>
+                                        <div class="label">Вероятная оценка</div>
                                         <div class="value">${data[index].probableAssessment}</div>
                                     </div>
                                     <div class="field" data-key="optimisticAssessment" data-value="${data[index].optimisticAssessment}">
-                                        <div class="label">optimistic_assessment</div>
+                                        <div class="label">Оптимистическая оценка</div>
                                         <div class="value">${data[index].optimisticAssessment}</div>
                                     </div>
                                     <div class="field">
-                                        <div class="label">optimistic_assessment</div>
+                                        <div class="label">Вычисленная оценка</div>
                                         <div class="value">${data[index].badProbability}</div>
                                     </div>
                                 </div>

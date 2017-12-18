@@ -80,6 +80,14 @@ public class Project {
 
     public double getNormalProbability(){
         double summE = 0;
+        for (Stage stage:stages) {
+            summE+=stage.getBadProbability();
+        }
+        return summE;
+    }
+
+    public double getHighProbability(){
+        double summE = 0;
         double sko = 0;
 
         for (Stage stage:stages){

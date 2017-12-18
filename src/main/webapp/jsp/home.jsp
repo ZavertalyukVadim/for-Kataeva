@@ -68,6 +68,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Normal probability</th>
+                <th>High probability</th>
             <c:forEach items="${projects}" var="project">
 
                 <tr class="project-item" data-id="${project.id}">
@@ -79,6 +80,9 @@
                     </td>
                     <td class="field">
                         <div class="value">${project.normalProbability}</div>
+                    </td>
+                    <td class="field">
+                        <div class="value">${project.highProbability}</div>
                     </td>
                 </tr>
             </c:forEach>

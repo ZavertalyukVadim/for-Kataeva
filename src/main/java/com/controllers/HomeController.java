@@ -64,6 +64,11 @@ public class HomeController {
     @GetMapping(value = "/project/{id}")
     public String projectDetail(@PathVariable("id") Integer id,ModelMap modelMap){
         modelMap.addAttribute("project", projectService.getProjectById(id));
+        Boolean role;
+        Object auth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        role = !Objects.equals(auth.toString(), "anonymousUser");
+
+        modelMap.addAttribute("role", role);
         return "project";
     }
 }
